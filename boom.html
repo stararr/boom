@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="boom.css">
+        <title>boom!</title>
+        <meta name="author" content="stararr">
+        <meta name="application-name" content="boom!">
+        <meta name="description" content="star's silly little website! :D">
+        <meta property="og:title" content="boom!">
+        <meta property="og:url" content="https://stararr.neocities.org/boom">
+        <meta property="og:description" content="star's silly little website! :D">
+        <meta property="og:image" content="https://stararr.neocities.org/images/swocketopia.png">
+        <meta property="og:image:type" content="image/png">
+        <meta property="og:image:alt" content="swocketopia">
+        <meta content="#8294bf" data-react-helmet="true" name="theme-color">
+        <script src="init.js"></script>
+        <link rel="icon" type="image/ico" href="./images/favicon.ico">
+    </head>
+    <body>
+        <div id="loadingscreen">
+            <h1>boom!</h1>
+            <h2 style="font-weight: normal;">the u.i. overhaul update!</h2>
+            <h2 style="font-weight: normal; font-size: 0.5rem;">and the doxx yourself update...</h2>
+            <img id="star" src="./images/star.png">
+            <h6>(P.S. A module U.I. overhaul update coming soon...)</h6>
+            <div id="didyouknow">hello!</div>
+        </div>
+    </div>
+        <div id="jumpscare"></div>
+        <div class="container">
+            <div id="nav">
+                <h1 style="font-size: 2.5rem;">boom</h1><hr>
+                <h4>very much based on <a href="https://www.roblox.com/games/3577061261/Defuse">defusal</a> which is in turn based on <a href="https://keeptalkinggame.com/">keep talking and nobody explodes</a></h4>
+                <h6>*note to self: make this look pretty later (which i will probably never do)<br>update (20/5/2024): i did it!</h6><hr>
+                <div id="navtogglecontainer">
+                    <input id="navtoggle" type="button" value="Show Options" onclick="navToggle(this);">
+                </div>
+                <div id="buttons">
+                    <div class="navheader" style="color:lightgreen; -webkit-text-stroke: 0.0625rem mediumseagreen;">Easy Modules</div><br>
+                    <input type="button" class="navbutton" onclick="showModule(1);" value="Addition Module"><br>
+                    <input type="button" class="navbutton" onclick="showModule(2);" value="Numpad Module"><br>
+                    <input type="button" class="navbutton" onclick="showModule(3);" value="Sequence Module"><br>
+                    <input type="button" class="navbutton" onclick="showModule(4);" value="Reaction Module"><br>
+                    <div class="navheader" style="color:lightgoldenrodyellow; -webkit-text-stroke: 0.0625rem sandybrown;">Medium Modules</div><br>
+                    <input type="button" class="navbutton" onclick="showModule(6);" value="Switch Module"><br>
+                    <div class="navheader" style="color:lightcoral; -webkit-text-stroke: 0.0625rem crimson;">Hard Modules</div><br>
+                    <input type="button" class="navbutton" onclick="showModule(5);" value="Data Module"><hr>
+                    <input type="button" class="navbutton" value="Doxx Yourself! :3" onclick="doxxYourself();">
+                </div>
+                <div id="inputs">
+                    minawii volume:<input type="range" min="0" max="100" value="75" class="slider" id="minawiislider" step="5"><br>
+                    <img src="./images/minawii.png" id="minawii" onclick="minawiiSqueak();"><br>
+                    bg opacity:<input type="range" min="0" max="100" value="0" class="slider" id="opacityslider" step="5" oninput="changeOpacity(this);"><br>
+                    darken/lighten bg:<input type="button" id="togglelightordark" value="light mode" onclick="toggleLightOrDark(this);"><br>
+                    ui opacity:<input type="range" min="25" max="100" value="100" class="slider" id="uislider" step="5" oninput="changeOpacityOfUI(this);">
+                </div>
+                <div id="account">
+                    <div id="login">
+                        <label for="username">username:</label>
+                        <input type="text" id="username"><br>
+                        <label for="pass">password:</label>
+                        <input type="password" id="pass"><br>
+                        <input id="submitinfo" type="submit" onclick="logIn();">
+                        <div id="loginresult"></div>
+                    </div>
+                    <div id="accountinfo">
+                        <div id="userdisplay"></div>
+                        <h6>(P.S. Your login only lasts for this session.)</h6>
+                        <h6>(P.P.S. Custom profile pictures coming soon!)</h6>
+                    </div>
+                </div>
+            </div>
+            <div class="page">
+                <div class="module" id="freaky">
+                    <div class="calculator">
+                        <div id="freakydiv"><div id="freakinput">______</div></div>
+                    </div>
+                    <div class="rules">
+                        <h2>Freaky Module</h2><hr>
+                        <div class="moduleinfo">
+                            <div class="points">Points: 0</div>
+                            <div class="lastguess">Last guess: N/A</div>
+                        </div><hr>
+                        <h3>get freaky</h3><hr>
+                        <h2>Rules:</h2>
+                        <ol type="i">
+                            <li>&#x1F445</li>
+                        </ol>
+                        <h3>are you a real freak?</h3>
+                    </div>
+                </div>
+                <div class="module" id="6">
+                    <div class="calculator">
+                        <div class="box" id="switchdisplay"></div>
+                        <div class="switches grid">
+                            <div class="switchcontainer"><div class="switch" onclick="switchSwitch(this);"></div><div class="switchlight"></div></div>
+                            <div class="switchcontainer"><div class="switch" onclick="switchSwitch(this);"></div><div class="switchlight"></div></div>
+                            <div class="switchcontainer"><div class="switch" onclick="switchSwitch(this);"></div><div class="switchlight"></div></div>
+                            <div class="switchcontainer"><div class="switch" onclick="switchSwitch(this);"></div><div class="switchlight"></div></div>
+                        </div>
+                        <div class="colorinput">
+                            <input type="button" class="colorbutton" id="switchred" style="background-color: red;" onclick="switchEnter(this.id);">
+                            <input type="button" class="colorbutton" id="switchgreen" style="background-color: limegreen" onclick="switchEnter(this.id);">
+                        </div>
+                    </div>
+                    <div class="rules">
+                        <h2>Data Module</h2><hr>
+                        <div class="moduleinfo">
+                            <div class="points">Points: 0</div>
+                            <div class="lastguess">Last guess: N/A</div>
+                        </div><hr>
+                        <h3>Enter the data.</h3><hr>
+                        <h2>Rules:</h2>
+                        <ol type="i">
+                            <li>Observe the given data</li>
+                            <li>Click on the switches to toggle their state</li>
+                            <li>Match the state of the switches to their corresponding number</li>
+                            <li>Switches corresponding to the number 0 must be in the off state</li>
+                            <li>Switches corresponding to the number 1 must be in the on state</li>
+                            <li>Once you've finished matching the switches to their corresponding numbers, check the conditions given below to submit your answer</li>
+                            <li id="conditionone"></li>
+                            <li id="conditiontwo"></li>
+                            <li>Otherwise, press the green button</li>
+                        </ol>
+                        <h3>That's all, have fun playing!</h3><hr>
+                        <h6>(P.S. The two conditions required to press the red button are randomly generated every game. Keep an eye out for them!)</h3>
+                    </div>
+                </div>
+                <div class="module" id="5">
+                    <div class="calculator">
+                        <div class="box" id="datadisplay"></div>
+                        <div class="data grid">
+                            <div class="datacircle"></div>
+                            <div class="datacircle"></div>
+                            <div class="datacircle"></div>
+                            <div class="datacircle"></div>
+                            <div class="datacircle"></div>
+                        </div>
+                        <div class="colorinput">
+                            <input type="button" class="colorbutton" id="datatoggle" style="background-color: dodgerblue;" onclick="toggleData();">
+                            <input type="button" class="colorbutton" id="datalockin" style="background-color: gold" onclick="nextData();">
+                        </div>
+                    </div>
+                    <div class="rules">
+                        <h2>Data Module</h2><hr>
+                        <div class="moduleinfo">
+                            <div class="points">Points: 0</div>
+                            <div class="lastguess">Last guess: N/A</div>
+                        </div><hr>
+                        <h3>Enter the data.</h3><hr>
+                        <h2>Rules:</h2>
+                        <ol type="i">
+                            <li>Observe the data</li>
+                            <li>The current light is highlighted by a blue circle</li>
+                            <li>Press on the blue button to toggle the current light's state</li>
+                            <li>Look at the key for the data which is given below these rules</li>
+                            <li>If the corresponding letter in the data for the current light is the same as the key, toggle it on</li>
+                            <li>If the corresponding letter in the data for the current light is different from the key, toggle it off</li>
+                            <li>Press the yellow button to lock in the light's state and switch to the next light</li>
+                            <li>Once you're on the last light, press the yellow button once more to submit your answer</li>
+                            <li>If your answer was correct, your score will be increased by one point</li>
+                            <li>If your answer was incorrect, your score will be decreased by one point</li>
+                        </ol>
+                        <h3>Yep, that's all for this module. Have fun!</h3><hr>
+                        <div id="keyhint">Key: N/A</div>
+                    </div>
+                </div>
+                <div class="module" id="4">
+                    <div class="calculator">
+                        <div class="reaction grid">
+                            <div class="borsquare" style="border-color: red;"></div>
+                            <div class="borsquare" style="border-color: deepskyblue;"></div>
+                        </div>
+                        <div class="colorinput">
+                            <input type="button" class="colorbutton" id="R" style="background-color: red;" onclick="updateReaction(this);">
+                            <input type="button" class="colorbutton" id="B" style="background-color: deepskyblue" onclick="updateReaction(this);">
+                        </div>
+                    </div>
+                    <div class="rules">
+                        <h2>Reaction Module</h2><hr>
+                        <div class="scoreinfo">
+                            <div class="points">Points: 0</div>
+                            <div class="lastguess">Last guess: N/A</div>
+                        </div><hr>
+                        <h3>Press the button below the box with more dashes.</h3><hr>
+                        <h2>Rules:</h2>
+                        <ol type="i">
+                            <li>Observe the two boxes</li>
+                            <li>Press the button below the box containing more dashes</li>
+                            <li>If you don't press either button within 5 seconds, your score will be decreased by 1 point</li>
+                            <li>Every time you press the wrong button, your score will be decreased by 1 point</li>
+                            <li>Every time you press the right button, your score will be increased by 1 point</li>
+                            <li>Your score cannot go below 0 points (i.e., your score cannot be negative)</li>
+                        </ol>
+                        <h3>That's all! Just remember to be quick. Have fun!</h3>
+                    </div>
+                </div>
+                <div class="module" id="3">
+                    <div class="calculator" id="blueandyellow">
+                        <div class="bny grid">
+                            <div class="boy"></div>
+                            <div class="boy"></div>
+                            <div class="boy"></div>
+                            <div class="boy"></div>
+                            <div class="boy"></div>
+                            <div class="boy"></div>
+                            <div class="boy"></div>
+                            <div class="boy"></div>
+                        </div>
+                        <div class="colorinput">
+                            <input type="button" class="colorbutton" style="background-color: cyan;" onclick="bnyAdd(this, 0)">
+                            <input type="button" class="colorbutton" style="background-color: yellow" onclick="bnyAdd(this, 1);">
+                        </div>
+                    </div>
+                    <div class="rules">
+                        <h2>Bar Module</h2><hr>
+                        <div class="scoreinfo">
+                            <div class="points">Points: 0</div>
+                            <div class="lastguess">Last guess: N/A</div>
+                        </div><hr>
+                        <h3>Press the colors you see from top to bottom!</h3><hr>
+                        <h2>Rules:</h2>
+                        <ol type="i">
+                            <li>Observe each of the bars' colors from top to bottom</li>
+                            <li>Press the buttons to enter in either color accordingly</li>
+                            <li>If you're unsuccessful, you can just try again!</li>
+                            <li>Every time you are successful at matching the colors, your score will be increased by 1 point</li>
+                            <li>Every time you are unsuccessful at matching the colors, your score will be decreased by 1 point</li>
+                            <li>Your score cannot go below 0 points (i.e., your score cannot be negative)</li>
+                        </ol>
+                        <h3>That's all, have fun!</h3><hr>
+                        <h6>(P.S. Mistake detection feature coming soon!)</h6>
+                </div>
+                </div>
+                <div class="module" id="2">
+                    <div class="calculator" id="romannumbers">
+                        <div class="box" id="roman"></div>
+                        <div class="roman grid">
+                                <input type="button" value="1" onclick="enterRoman(this);">
+                                <input type="button" value="2" onclick="enterRoman(this);">
+                                <input type="button" value="3" onclick="enterRoman(this);">
+                                <input type="button" value="4" onclick="enterRoman(this);">
+                                <input type="button" value="5" onclick="enterRoman(this);">
+                                <input type="button" value="6" onclick="enterRoman(this);">
+                                <input type="button" value="7" onclick="enterRoman(this);">
+                                <input type="button" value="8" onclick="enterRoman(this);">
+                                <input type="button" value="9" onclick="enterRoman(this);">
+                                <div></div>
+                                <input type="button" value="0" onclick="enterRoman(this);">
+                                <input type="button" value="R" onclick="enterRoman(this);">
+                        </div>
+                        <div class="box" id="targetroman"></div>
+                    </div>
+                    <div class="rules">
+                        <h2>Roman Numeral Module</h2><hr>
+                        <div class="moduleinfo">
+                            <div class="points">Points: 0</div>
+                            <div class="lastguess">Last guess: N/A</div>
+                        </div><hr>
+                        <h3>Enter the numeric form of the roman numeral given!</h3><hr>
+                        <h2>Rules:</h2>
+                        <ol type="i">
+                            <li>Read the target number at the bottom</li>
+                            <li>Press the buttons to enter numbers</li>
+                            <li>Press R to reset your sum back to 0</li>
+                            <li>Every time you press R, your score will be decreased by 1 point</li>
+                            <li>Every time you are successful at matching the number, your score will be increased by 1 point</li>
+                            <li>Your score cannot go below 0 points (i.e., your score cannot be negative)</li>
+                        </ol>
+                        <h3>That's all! Have fun :D</h3><hr>
+                        <div class="romanhint">
+                            <div>I=1</div>
+                            <div>II=2</div>
+                            <div>III=3</div>
+                            <div>IV=4</div>
+                            <div>V=5</div>
+                            <div>VI=6</div>
+                            <div>VII=7</div>
+                            <div>VIII=8</div>
+                            <div>IX=9</div>
+                            <div>0=0</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="module" id="1">
+                    <div class="calculator" id="addition">
+                        <div class="box" id="sum"></div>
+                        <div class="sum grid">
+                            <input type="button" value="1" onclick="addtoSum(this);">
+                            <input type="button" value="5" onclick="addtoSum(this);">
+                            <input type="button" value="20" onclick="addtoSum(this);">
+                            <input type="button" value="50" onclick="addtoSum(this);">
+                            <input type="button" value="200" onclick="addtoSum(this);">
+                            <input type="button" value="R" onclick="addtoSum(this);">
+                        </div>
+                        <div class="box" id="targetsum"></div>
+                    </div>
+                    <div class="rules">
+                        <h2>Addition Module</h2><hr>
+                        <div class="moduleinfo">
+                            <div class="points">Points: 0</div>
+                            <div class="lastguess">Last guess: N/A</div>
+                        </div><hr>
+                        <h3>Keep adding until you reach the target number!</h3><hr>
+                        <h2>Rules:</h2>
+                        <ol type="i">
+                            <li>Read the target number at the bottom</li>
+                            <li>Press the buttons to add up to that number</li>
+                            <li>Press R to reset your sum back to 0</li>
+                            <li>Every time you press R, your score will be decreased by 1 point</li>
+                            <li>Every time you are successful at matching the number, your score will be increased by 1 point</li>
+                            <li>Your score cannot go below 0 points (i.e., your score cannot be negative)</li>
+                        </ol>
+                        <h3>That's all, have fun! :D</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="functions.js"></script>
+    </body>
+</html>
