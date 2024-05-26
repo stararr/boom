@@ -13,28 +13,26 @@
         <meta property="og:image:type" content="image/png">
         <meta property="og:image:alt" content="swocketopia">
         <meta content="#8294bf" data-react-helmet="true" name="theme-color">
-        <script src="init.js"></script>
         <link rel="icon" type="image/ico" href="./images/favicon.ico">
     </head>
     <body>
         <div id="loadingscreen">
             <h1>boom!</h1>
-            <h2 style="font-weight: normal;">the u.i. overhaul update!</h2>
-            <h2 style="font-weight: normal; font-size: 0.5rem;">and the doxx yourself update...</h2>
+            <h2 style="font-weight: normal;">the <b>complete</b> u.i. overhaul update!</h2>
+            <h2 style="font-weight: normal;">part 2/2!</h2>
             <img id="star" src="./images/star.png">
-            <h6>(P.S. A module U.I. overhaul update coming soon...)</h6>
             <div id="didyouknow">hello!</div>
         </div>
     </div>
         <div id="jumpscare"></div>
-        <div class="container">
+        <div id="container">
             <div id="nav">
                 <h1 style="font-size: 2.5rem;">boom</h1><hr>
                 <h4>very much based on <a href="https://www.roblox.com/games/3577061261/Defuse">defusal</a> which is in turn based on <a href="https://keeptalkinggame.com/">keep talking and nobody explodes</a></h4>
                 <h6>*note to self: make this look pretty later (which i will probably never do)<br>update (20/5/2024): i did it!</h6><hr>
                 <div id="navtogglecontainer">
                     <input id="navtoggle" type="button" value="Show Options" onclick="navToggle(this);">
-                </div>
+                </div><hr>
                 <div id="buttons">
                     <div class="navheader" style="color:lightgreen; -webkit-text-stroke: 0.0625rem mediumseagreen;">Easy Modules</div><br>
                     <input type="button" class="navbutton" onclick="showModule(1);" value="Addition Module"><br>
@@ -70,7 +68,7 @@
                     </div>
                 </div>
             </div>
-            <div class="page">
+            <div id="page">
                 <div class="module" id="freaky">
                     <div class="calculator">
                         <div id="freakydiv"><div id="freakinput">______</div></div>
@@ -99,8 +97,8 @@
                             <div class="switchcontainer"><div class="switch" onclick="switchSwitch(this);"></div><div class="switchlight"></div></div>
                         </div>
                         <div class="colorinput">
-                            <input type="button" class="colorbutton" id="switchred" style="background-color: red;" onclick="switchEnter(this.id);">
-                            <input type="button" class="colorbutton" id="switchgreen" style="background-color: limegreen" onclick="switchEnter(this.id);">
+                            <input type="button" class="colorbutton" id="switchred" style="background-color: rgba(220, 20, 60, 0.5); border-color: rgba(220, 20, 60, 0.5);" onclick="switchEnter(this.id);">
+                            <input type="button" class="colorbutton" id="switchgreen" style="background-color: rgba(0, 255, 127, 0.5); border-color: rgba(0, 255, 127, 0.5);" onclick="switchEnter(this.id);">
                         </div>
                     </div>
                     <div class="rules">
@@ -137,8 +135,8 @@
                             <div class="datacircle"></div>
                         </div>
                         <div class="colorinput">
-                            <input type="button" class="colorbutton" id="datatoggle" style="background-color: dodgerblue;" onclick="toggleData();">
-                            <input type="button" class="colorbutton" id="datalockin" style="background-color: gold" onclick="nextData();">
+                            <input type="button" class="colorbutton" id="datatoggle" style="background-color: rgba(0, 191, 255, 0.5); border-color: rgba(0, 191, 255, 0.5);" onclick="toggleData();">
+                            <input type="button" class="colorbutton" id="datalockin" style="background-color: rgba(255, 215, 0, 0.5); border-color: rgba(255, 215, 0, 0.5);" onclick="nextData();">
                         </div>
                     </div>
                     <div class="rules">
@@ -168,12 +166,12 @@
                 <div class="module" id="4">
                     <div class="calculator">
                         <div class="reaction grid">
-                            <div class="borsquare" style="border-color: red;"></div>
-                            <div class="borsquare" style="border-color: deepskyblue;"></div>
+                            <div class="borsquare" style="outline-color: rgba(220, 20, 60, 0.5);"></div>
+                            <div class="borsquare" style="outline-color: rgba(0, 191, 255, 0.5);"></div>
                         </div>
                         <div class="colorinput">
-                            <input type="button" class="colorbutton" id="R" style="background-color: red;" onclick="updateReaction(this);">
-                            <input type="button" class="colorbutton" id="B" style="background-color: deepskyblue" onclick="updateReaction(this);">
+                            <input type="button" class="colorbutton" id="R" style="background-color: rgba(220, 20, 60, 0.5); border-color: rgba(220, 20, 60, 0.5);" onclick="updateReaction(this);">
+                            <input type="button" class="colorbutton" id="B" style="background-color: rgba(0, 191, 255, 0.5); border-color: rgba(0, 191, 255, 0.5);" onclick="updateReaction(this);">
                         </div>
                     </div>
                     <div class="rules">
@@ -208,8 +206,8 @@
                             <div class="boy"></div>
                         </div>
                         <div class="colorinput">
-                            <input type="button" class="colorbutton" style="background-color: cyan;" onclick="bnyAdd(this, 0)">
-                            <input type="button" class="colorbutton" style="background-color: yellow" onclick="bnyAdd(this, 1);">
+                            <input type="button" class="colorbutton" style="background-color: rgba(64, 224, 208, 0.5); border-color: rgba(64, 224, 208, 0.5);" onclick="bnyAdd(this, 0)">
+                            <input type="button" class="colorbutton" style="background-color: rgba(255, 215, 0, 0.5); border-color: rgba(255, 215, 0, 0.5);" onclick="bnyAdd(this, 1);">
                         </div>
                     </div>
                     <div class="rules">
@@ -217,6 +215,7 @@
                         <div class="scoreinfo">
                             <div class="points">Points: 0</div>
                             <div class="lastguess">Last guess: N/A</div>
+                            <div class="currentstatus">Current position: 1/8</div>
                         </div><hr>
                         <h3>Press the colors you see from top to bottom!</h3><hr>
                         <h2>Rules:</h2>
@@ -229,7 +228,7 @@
                             <li>Your score cannot go below 0 points (i.e., your score cannot be negative)</li>
                         </ol>
                         <h3>That's all, have fun!</h3><hr>
-                        <h6>(P.S. Mistake detection feature coming soon!)</h6>
+                        <h6>(P.S. The mistake detection feature has arrived!)</h6>
                 </div>
                 </div>
                 <div class="module" id="2">
@@ -249,7 +248,7 @@
                                 <input type="button" value="0" onclick="enterRoman(this);">
                                 <input type="button" value="R" onclick="enterRoman(this);">
                         </div>
-                        <div class="box" id="targetroman"></div>
+                        <div class="box reference" id="targetroman"></div>
                     </div>
                     <div class="rules">
                         <h2>Roman Numeral Module</h2><hr>
@@ -293,7 +292,7 @@
                             <input type="button" value="200" onclick="addtoSum(this);">
                             <input type="button" value="R" onclick="addtoSum(this);">
                         </div>
-                        <div class="box" id="targetsum"></div>
+                        <div class="box reference" id="targetsum"></div>
                     </div>
                     <div class="rules">
                         <h2>Addition Module</h2><hr>
