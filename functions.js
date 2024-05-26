@@ -490,6 +490,7 @@ function bnyAdd(button, value) {
     else {
         updatepoints(3, -1);
         inputbny="";
+        document.getElementById('3').getElementsByClassName('currentstatus')[0].innerText='Current position: 1/8';
     }
 }
 
