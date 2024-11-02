@@ -10,7 +10,10 @@ var loadingmessages =
 "'s favorite vocaloid is vflower!",
 " loves strawberry ice cream.",
 " took one hour to finally be happy with the shape of the star in the loading screen.",
-" needs suggestions for more modules... 3:"]
+" needs suggestions for more modules... 3:",
+" is done with 10th grade.",
+" took a break from working on this for 5 months. (June 3rd, 2024 to November 2nd, 2024)",
+" made Starsweeper in 2 days."]
 var stars = ["./images/star.png", "./images/star_happy.png", "./images/star_contented.png", "./images/star_sleepy.png", "./images/star_colonthree.png", "./images/star_derp.png", "./images/star_sleepy.png"]
 var loadedsounds = 0;
 var currentsoundtobeloaded;
