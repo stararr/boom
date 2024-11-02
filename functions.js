@@ -34,13 +34,13 @@ for (sound of ["https://files.catbox.moe/9tsqjp.mp3", "https://files.catbox.moe/
         }, false);
 }
 
-
+/*
 var showLoadingMessages = window.setInterval(function(){
     document.getElementById('didyouknow').innerHTML="<b>did you know? star</b>"+loadingmessages[Math.round(Math.random()*(loadingmessages.length-1))];
     document.getElementById('star').src = stars[Math.round(Math.random()*(stars.length-1))];
 }, 1250);
-
-
+*/
+/*
 function onReady(callback) {
     var intervalId = window.setInterval(function() {
         if ((document.body !== undefined) && (loadedsounds==7)) {
@@ -50,7 +50,7 @@ function onReady(callback) {
         }
     }, 7500);
 }
-  
+*/
 function setVisible(id, visible) {
     document.getElementById('container').style.display='flex';
     document.getElementById(id).style.animation = 'loaded 2500ms ease-out';
@@ -58,10 +58,12 @@ function setVisible(id, visible) {
         document.getElementById(id).style.display = visible ? 'flex' : 'none';
     })
 }
-
+/*
 onReady(function() {
     setVisible('loadingscreen', false);
 });
+*/
+setVisible('loadingscreen', false);
 
 console.log('running! :D');
 
