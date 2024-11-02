@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
         <link rel="stylesheet" href="boom.css">
         <title>boom!</title>
@@ -13,6 +13,7 @@
         <meta property="og:image:type" content="image/png">
         <meta property="og:image:alt" content="swocketopia">
         <meta content="#8294bf" data-react-helmet="true" name="theme-color">
+        <meta charset="utf-8">
         <link rel="icon" type="image/ico" href="./images/favicon.ico">
     </head>
     <body>
@@ -43,6 +44,7 @@
                     <input type="button" class="navbutton" onclick="showModule(6);" value="Switch Module"><br>
                     <div class="navheader" style="color:lightcoral; -webkit-text-stroke: 0.0625rem crimson;">Hard Modules</div><br>
                     <input type="button" class="navbutton" onclick="showModule(5);" value="Data Module"><hr>
+                    <input type="button" class="navbutton" value="Starsweeper" onclick="showModule('starsweeper');">
                     <input type="button" class="navbutton" value="Doxx Yourself! :3" onclick="doxxYourself();">
                 </div>
                 <div id="inputs">
@@ -69,6 +71,31 @@
                 </div>
             </div>
             <div id="page">
+                <div class="module" id="starsweeper">
+                    <div class="calculator">
+                        <div style="display: flex; flex-direction: row; align-items: center; justify-content: center;">
+                            <input id="start" type="button" value="start">
+                        </div>
+                        <div id="grid"></div>
+                        <meter id="loadingbar"></meter>
+                    </div>
+                    <div class="rules">
+                        <h2>Starsweeper!</h2><hr>
+                        <div class="moduleinfo">
+                            <div class="points">Points: 0</div>
+                            <div class="lastguess">Last game: N/A</div>
+                        </div><hr>
+                        <h3>Sweep the mines in Starsweeper!</h3><hr>
+                        <h2>Rules:</h2>
+                        <ol type="i">
+                            <li>I'm lazy. I'll add this later.</li>
+                        </ol>
+                        <h3>That's all! Just try not to explode. Have fun!</h3>
+                        <hr>
+                        <h6 style="text-align: right;">02-11-2024</h6>
+                        <h6 style="text-align: left;">first update in a long time, woo!</h6>
+                    </div>
+                </div>
                 <div class="module" id="freaky">
                     <div class="calculator">
                         <div id="freakydiv"><div id="freakinput">______</div></div>
