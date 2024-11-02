@@ -67,6 +67,11 @@ for (mod of document.getElementsByClassName("module")) {
     mod.points=0;
 }
 
+function clearTile(node) {
+    node.style.borderStyle = "inset"
+    node.cleared = true
+}
+
 function navToggle(button) {
     switch(button.value) {
         case "Show Options":
@@ -107,7 +112,7 @@ function logIn() {
     document.getElementById('pass').value="";
     if (username in users) {
         if (users[username]==password) {
-            document.getElementById('loginresult').style.color='forestgreen';
+            document.getElementById('loginresult').style.color='var(--winninggreen)';
             document.getElementById('loginresult').innerText='Logging you in...';
             setTimeout(function() {
                 document.getElementById('loginresult').innerText='Successfully logged in!';
@@ -118,13 +123,13 @@ function logIn() {
             }, 500)
         }
         else {
-            document.getElementById('loginresult').style.color='red';
+            document.getElementById('loginresult').style.color='var(--losingred)';
             document.getElementById('loginresult').innerText='Incorrect password.';
             clearAfter("loginresult", 1250);
         }
     }
     else {
-        document.getElementById('loginresult').style.color='red';
+        document.getElementById('loginresult').style.color='var(--losingred)';
         document.getElementById('loginresult').innerText='That account does not exist.';
         clearAfter("loginresult", 1250);
     }
@@ -349,12 +354,20 @@ function updatepoints(id, points, message) {
             lastguess.style.animation = 'none';
             void lastguess.offsetWidth;
             lastguess.style.animation = 'correct 500ms linear';
+            if (id=="starsweeper") {
+                lastguess.innerText = "Last game: WIN!";
+                return
+            }
             lastguess.innerText = "Last guess: CORRECT";
         }
         else {
             lastguess.style.animation = 'none';
             void lastguess.offsetWidth;
             lastguess.style.animation = 'incorrect 500ms linear';
+            if (id=="starsweeper") {
+                lastguess.innerText = "Last game: LOSE...";
+                return
+            }
             gamemodule.getElementsByClassName('lastguess')[0].innerText = "Last guess: INCORRECT";
         }
         if (message) {lastguess.innerHTML+=message;}
@@ -448,6 +461,9 @@ function showModule(id) {
             case 6:
                 resetSwitches();
                 break;
+            case 'starsweeper':
+                startGame()
+                break;
             case 'freaky':
                 jumpscare('./images/freakmoji.png',500);
                 break;
@@ -490,7 +506,6 @@ function bnyAdd(button, value) {
     else {
         updatepoints(3, -1);
         inputbny="";
-        document.getElementById('3').getElementsByClassName('currentstatus')[0].innerText='Current position: 1/8';
     }
 }
 
@@ -586,3 +601,184 @@ function doxxYourself() {
         window.alert('sorry, there was an error trying to fetch your ip.\ni hope you liked the jumpscare though! ^^');
     }
 }
+
+// STARSWEEPER
+var running = false
+var gameover = false
+var loading = false
+
+function elem(str) {
+    return document.getElementById(str)
+}
+var nodenumber, nearbymines, currentarray, set, myarr
+var clearedtiles
+
+function totalarr(x) {
+    myarr = [(x-(gridrowcol+1)), (x-gridrowcol), (x-(gridrowcol-1)), (x-1), (x+1), (x+(gridrowcol-1)), (x+gridrowcol), (x+(gridrowcol+1))]
+    currentarray = toparr(x).concat(rightarr(x)).concat(bottomarr(x)).concat(leftarr(x))
+    set = new Set(currentarray)
+    set = Array.from(set)
+    return myarr.filter(n => !set.includes(n))
+}
+
+// VARIABLES
+
+var gridrowcol = 8
+var numberofmines = 10
+
+function toparr(x) {
+    if (x>gridrowcol) {return []}
+    else {return [(x-(gridrowcol+1)), (x-(gridrowcol)), (x-(gridrowcol-1))]}
+}
+function rightarr(x) {
+    if (x%gridrowcol!=0) {return []}
+    else {return [(x-(gridrowcol-1)), (x+1), (x+(gridrowcol+1))]}
+}
+function bottomarr(x) {
+    if (x<gridrowcol*(gridrowcol-1) || x>gridrowcol**2) {return []}
+    else {return [(x+(gridrowcol-1)), (x+gridrowcol), (x+(gridrowcol+1))]}
+}
+
+function leftarr(x) {
+    if (!Number.isInteger(((x+(gridrowcol-1))/gridrowcol))) {return []}
+    else {return [(x-(gridrowcol+1)), (x-1), (x+(gridrowcol-1))]}
+}
+
+function calculateMines(node) {
+    if (node.hasMine) {return}
+    nodenumber = Number(node.id)
+    nearbymines = 0
+    for (number of totalarr(nodenumber)) {
+        if (elem(number.toString()) && elem(number.toString()).hasMine) {nearbymines++}
+    }
+    elem(nodenumber.toString()).nearbyMines = nearbymines
+    node.flipped = false
+    loadingbar.value = loadingbar.value+(1/(gridrowcol**2))
+    if (loadingbar.value==1) {loading = false}
+}
+
+function checkformines(nodenumber) {
+    if (!elem(nodenumber.toString()) || elem(nodenumber.toString()).nearbyMines!=0 || elem(nodenumber.toString()).flipped) {return}
+    elem(nodenumber.toString()).flipped = true
+    // clearedtiles++
+    for (number of totalarr(nodenumber)) {
+        // if (!elem(number.toString())) {return}
+        // elem(number.toString()).style.backgroundColor = 'blue'
+        elem(number.toString()).value = elem(number.toString()).nearbyMines
+        clearTile(elem(number.toString()))
+        // node.flipped = true
+        // clearedtiles++
+        // if (elem(number.toString()).value!=0) {return}
+        checkformines(number);
+    }
+}
+
+
+function eventHandler(node) {
+    node.id = mines.toString()
+    // node.value = node.id
+    node.addEventListener("contextmenu", function(e) {
+        
+        e.preventDefault()
+
+        if (gameover||loading) {return}
+
+        if (node.value == "🚩") {
+            selectedmines--
+            node.value = ""
+        }
+        
+        else {
+            if (selectedmines==numberofmines) {return}
+            selectedmines++
+            node.value = "🚩"
+        }
+    })
+    node.addEventListener("click", function(e) {
+
+        if (gameover||loading) {return}
+
+        if (e.button==0) {
+            if (node.hasMine) {
+                node.value = "💣"
+                gameover = true
+                for (mine of minearray) {
+                    mine.style.backgroundColor = "var(--losingred)"
+                    mine.value = "💣"
+                    updatepoints("starsweeper", -1)
+                }
+            }
+
+            else {
+                nodenumber = Number(node.id)
+                node.value = node.nearbyMines.toString()
+                clearTile(node)
+                //node.flipped = true
+                checkformines(nodenumber)
+            }
+
+            var clearedtiles = 0
+            for (node of grid.childNodes) {
+                if (node.cleared) {clearedtiles++}
+            }
+            console.log(clearedtiles)
+
+            if (selectedmines==numberofmines && clearedtiles==((gridrowcol**2)-numberofmines) && !gameover) {
+                gameover = true
+                for (node of grid.childNodes) {
+                    node.style.backgroundColor = "var(--winninggreen)"
+                }
+                updatepoints("starsweeper", 1)
+                /*for (mine of minearray) {
+                    mine.value = "💣"
+                }*/
+            }
+        }
+    })
+}
+
+const startbutton = elem("start")
+const loadingbar = elem("loadingbar")
+const grid = elem("grid")
+
+var mines = 0
+var minearray
+var currentmine, selectedmines
+
+function startGame() {
+    
+    gameover = false
+    clearedtiles = 0
+    selectedmines = 0
+    grid.innerHTML = ("<input type='button' class='mybutton'>").repeat(64)
+    loadingbar.style.width = grid.offsetWidth.toString()+"px"
+    loadingbar.value = 0
+    loadingbar.low = 1/5
+    loadingbar.high = 3/5
+    loadingbar.optimum = 1
+    loading = true
+
+    minearray = []
+    mines = 0
+    while (mines!=numberofmines) {
+        currentmine = grid.childNodes[Math.round(Math.random()*64)]
+        if (!currentmine.hasMine) {
+            currentmine.hasMine = true
+            // currentmine.style.backgroundColor = 'red'
+            minearray.push(currentmine)
+            mines++
+            loadingbar.value = loadingbar.value+(1/(gridrowcol**2))
+        }
+    }
+
+    mines = 0
+    for (node of grid.childNodes) {
+        mines++
+        eventHandler(node)
+    }
+    for (node of grid.childNodes) {
+        calculateMines(node)
+    }
+}
+
+startbutton.addEventListener("click", startGame)
